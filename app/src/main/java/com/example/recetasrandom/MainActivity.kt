@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -25,7 +26,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import com.example.recetasrandom.ui.theme.RecetasRandomTheme
+import com.example.recetasrandom.viewModel.RecipeViewModel
+import kotlin.getValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +41,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable
-fun InicioApp(){
+fun InicioApp(viewModel: RecipeViewModel = viewModel()){
+
     Column(
         modifier = Modifier.padding(50.dp).fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
@@ -68,9 +73,21 @@ fun InicioApp(){
 
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = {}
+            onClick = { viewModel.fetchRandomRecipe() }
         ) {
             Text(text = "Me siento con suerte")
+        }
+
+        if (viewModel.isLoading){
+            CircularProgressIndicator()
+        }
+
+        viewModel.recipe?.let { meal ->
+            Text(
+                text = meal.strMeal,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(24.dp)
+            )
         }
     }
 }
