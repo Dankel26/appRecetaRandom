@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable
-fun InicioApp(viewModel: RecipeViewModel = viewModel()){
+fun InicioApp(viewModel: RecipeViewModel = ViewModel()){
 
     Column(
         modifier = Modifier.padding(50.dp).fillMaxWidth(),
