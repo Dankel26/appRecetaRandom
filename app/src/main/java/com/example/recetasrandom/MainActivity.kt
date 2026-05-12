@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.recetasrandom.ui.theme.RecetasRandomTheme
 import com.example.recetasrandom.viewModel.RecipeViewModel
 import kotlin.getValue
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable
-fun InicioApp(viewModel: RecipeViewModel = ViewModel()){
+fun InicioApp(viewModel: RecipeViewModel = viewModel()){
 
     Column(
         modifier = Modifier.padding(50.dp).fillMaxWidth(),
