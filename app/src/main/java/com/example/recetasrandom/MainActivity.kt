@@ -74,7 +74,9 @@ fun InicioApp(viewModel: RecipeViewModel = viewModel()){
 
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.fetchRandomRecipe() }
+            onClick = { viewModel.fetchRandomRecipe(load = {
+                println(it) // trae los datos capturados en el viewmodel
+            })}
         ) {
             Text(text = "Me siento con suerte")
         }
